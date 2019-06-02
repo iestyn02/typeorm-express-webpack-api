@@ -9,5 +9,5 @@ Create DB Schema
 -- DROP SCHEMA demo;
 
 CREATE SCHEMA demo
-  AUTHORIZATION masteruser;
+  AUTHORIZATION YOUR_DB_USER;
 
