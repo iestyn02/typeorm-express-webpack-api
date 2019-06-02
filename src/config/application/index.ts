@@ -21,11 +21,8 @@ export interface ApplicationOptions {
 
 export class Application {
 
-  // Singleton application
   private static _app: Express;
 
-  // Logger interface
-  // public static logger: bunyan;
   public static logger: any;
 
   /**
