@@ -68,7 +68,7 @@
     "ts-node": "8.1.0",
     "typescript": "3.2.1",
     "webpack": "4.22.0",
-    "webpack-bundle-analyzer": "3.0.3",
+    "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.0.8"
   }
 }
