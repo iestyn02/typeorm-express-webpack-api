@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "a2967de0-1eba-40d0-9c15-aa6ec5832879",
+		"name": "TypeORM, Express API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "http://127.0.0.1:1337/v1/companies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/companies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/companies Copy Copy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "avatar",
+									"value": "http://dublinbrewer.ie/wp-content/uploads/2015/03/icon.png",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Dublin Brewer",
+									"type": "text"
+								},
+								{
+									"key": "website_url",
+									"value": "http://dublinbrewer.ie/",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "info@thelarder.ie",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+353016333581",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "The Larder Restaurant & Brewhouse\n8 Parliament Street, Dublin.",
+									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "At Dublin Brewer we are now in our 4th year brewing exciting beer. Having started as home brewers, we now contract brew with 2 different breweries.\n\nCarrig Brewing in Drumshanbo, Co Leitrim and Independent Brewing in Connemara, Co Galway.\n\nUntil recently we only sold our beer through our restaurant,\n\nThe Larder Restaurant & Brewhouse, on Parliament Street, Dublin 2.\n\nIn September last we launched two of our beers into a limited number of retail outlets.\n\nWe launched Dublin Brewer Lager and Dublin Brewer Session IPA, and we are thrilled with the response so far.",
+									"type": "text"
+								},
+								{
+									"key": "registered",
+									"value": "2017-05-05",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "53.3495518",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "-6.2481926",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/companies",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/companies Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/companies/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/companies Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "avatar",
+									"value": "http://dublinbrewer.ie/wp-content/uploads/2015/03/icon.png",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Dublin Brewer",
+									"type": "text"
+								},
+								{
+									"key": "website_url",
+									"value": "http://dublinbrewer.ie/",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "info@thelarder.ie",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+353016333581",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "The Larder Restaurant & Brewhouse\n8 Parliament Street, Dublin.",
+									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "At Dublin Brewer we are now in our 4th year brewing exciting beer. Having started as home brewers, we now contract brew with 2 different breweries.\n\nCarrig Brewing in Drumshanbo, Co Leitrim and Independent Brewing in Connemara, Co Galway.\n\nUntil recently we only sold our beer through our restaurant,\n\nThe Larder Restaurant & Brewhouse, on Parliament Street, Dublin 2.\n\nIn September last we launched two of our beers into a limited number of retail outlets.\n\nWe launched Dublin Brewer Lager and Dublin Brewer Session IPA, and we are thrilled with the response so far.",
+									"type": "text"
+								},
+								{
+									"key": "registered",
+									"value": "2017-05-05",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "53.3495518",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "-6.2481926",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/companies/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/companies Copy Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/companies/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "http://127.0.0.1:1337/v1/products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/products",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "adsf",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "regular_price",
+									"value": "56.56",
+									"type": "text"
+								},
+								{
+									"key": "sale_price",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/products",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/products Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/products/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"products",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/products Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Aws",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "regular_price",
+									"value": "56.56",
+									"type": "text"
+								},
+								{
+									"key": "sale_price",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "company_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/products/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:1337/v1/products Copy Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:{{PORT}}/v1/products/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"v1",
+								"products",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:1337/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:{{PORT}}/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "2c67f24f-d87c-4b21-bdf8-53f843c2fd70",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b863d947-e798-4e98-b5da-e4592f8e5a32",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5d6da26e-4122-4cbb-94bb-9d167fb9e099",
+			"key": "PORT",
+			"value": "9845",
+			"type": "string"
+		}
+	]
+}

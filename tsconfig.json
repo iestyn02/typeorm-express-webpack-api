@@ -1,0 +1,47 @@
+{
+  "moduleResolution": "node",
+  "files": [
+    "src/server.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules",
+    "src/**/*.test.ts",
+    "./dist",
+    "./bin"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "target": "es6",
+    "outDir": "dist",
+    "rootDir": "./",
+    "sourceMap": false,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": false,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@vars": [
+        "./src/config/vars/index"
+      ],
+      "@api/*": [
+        "./src/api/v1/*"
+      ],
+      "@models/*": [
+        "./src/api/@models/*"
+      ],
+      "@services/*": [
+        "./src/api/@services/*"
+      ]
+    }
+  }
+}
