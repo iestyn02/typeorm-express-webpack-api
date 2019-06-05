@@ -51,7 +51,7 @@ export class ProductService {
    * @param fields
    */
   public static async add(fields: Partial<Product>): Promise<Product> {
-    if (!fields.name) throw new NotFound();
+    this.validate(fields);
     let item = new Product();
     item.name = fields.name;
     item.regular_price = fields.regular_price;

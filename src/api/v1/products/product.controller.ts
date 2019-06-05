@@ -7,6 +7,7 @@ class ProductController {
     (
       Service.getAll().then(response => {
         res.jsonp(response);
+        next();
       }).catch(err => next(err))
     )
   };
@@ -15,6 +16,7 @@ class ProductController {
     (
       Service.add(req.body).then(response => {
         res.status(201).jsonp(response);
+        next();
       }).catch(err => next(err))
     )
   };
@@ -23,6 +25,7 @@ class ProductController {
     (
       Service.getById(req.params.id).then(response => {
         res.jsonp(response);
+        next();
       }).catch(err => next(err))
     )
   };
@@ -31,6 +34,7 @@ class ProductController {
     (
       Service.updateById(req.params.id, req.body).then(response => {
         res.jsonp(response);
+        next();
       }).catch(err => next(err))
     )
   };
@@ -38,7 +42,8 @@ class ProductController {
   public async del(req: Request, res: Response, next: NextFunction) {
     (
       Service.deleteById(req.params.id).then(response => {
-        res.jsonp({ data: Number(response) });
+        res.jsonp(Number(response));
+        next();
       }).catch(err => next(err))
     )
   };

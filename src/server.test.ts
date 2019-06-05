@@ -15,7 +15,7 @@ describe("TypeORM API", () => {
     app.get("/")
       .expect("Content-Type", /json/)
       .expect(200, done)
-      .expect(res => {
+      .expect((res: any) => {
         expect(res.body).have.property('data');
       });
   });

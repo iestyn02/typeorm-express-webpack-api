@@ -30,7 +30,7 @@ describe("Products API", () => {
 
     it("should return all Products", done => {
       app.get("/v1/products")
-        .expect(res => {
+        .expect((res: any) => {
           // if (!res.body.data) throw new Error("API: Expected data in response");
           if (!res.body) throw new Error("API: Expected data in response");
           if (res.body.length != 3) throw new Error("API: Expected 3 Products in response");
@@ -48,25 +48,25 @@ describe("Products API", () => {
       Products.deleteAll().then(() => done()).catch(done);
     });
 
-    // it("should 400 if `name` not provided", done => {
-    //   // app.post(`/v1/products`)
-    //   // .send({ name: "" })
-    //   // .expect("Content-Type", /json/)
-    //   // .expect(400, { error: { message: "Product requires `name`" } }, done);
-    // });
+    it("should 400 if `name` not provided", done => {
+      app.post(`/v1/products`)
+        .send({ name: '' })
+        .expect("Content-Type", /json/)
+        .expect(400, { error: { message: "Product requires `name`" } }, done);
+    });
 
     it("should create and return a new product", done => {
       app.post("/v1/products")
         .send(fields)
-        .expect(200)
+        .expect(201)
         .expect("Content-Type", /json/)
-        .expect(res => {
+        .expect((res: any) => {
           if (!res.body) throw new Error("API: Expected data in response");
           if (!res.body.id) throw new Error("API: Expected Product to have id");
           if (!res.body.name) throw new Error("API: Expected Product to have name");
           if (res.body.name !== fields.name) throw new Error(`API: Expected Product name to be '${fields.name}'`);
         })
-        .then(async res => {
+        .then(async (res: any) => {
           let product_1 = await Products.getById(res.body.id);
           if (!product_1) throw new Error("DB: Expected record to exist in DB");
           if (product_1.name !== fields.name) throw new Error(`DB: Expected Product name to be '${fields.name}'`);
@@ -88,11 +88,11 @@ describe("Products API", () => {
       Products.deleteAll().then(() => done()).catch(done);
     });
 
-    // it("should 404 if no Product exists with `id`", done => {
-    //   app.get(`/v1/products/9999`)
-    //     .expect("Content-Type", /json/)
-    //     .expect(404, { error: { message: "Not Found" } }, done);
-    // });
+    it("should 404 if no Product exists with `id`", done => {
+      app.get(`/v1/products/9999`)
+        .expect("Content-Type", /json/)
+        .expect(404, { error: { message: "Not Found" } }, done);
+    });
 
     it("should get product with `id`", done => {
       app.get(`/v1/products/${product.id}`)
@@ -127,32 +127,32 @@ describe("Products API", () => {
       Products.deleteAll().then(() => done()).catch(done);
     });
 
-    // it("should 404 if no Product exists with `id`", done => {
-    //   app.post("/v1/products/9999")
-    //     .send(fields)
-    //     .expect("Content-Type", /json/)
-    //     .expect(404, { error: { message: "Not Found" } }, done);
-    // });
+    it("should 404 if no Product exists with `id`", done => {
+      app.patch("/v1/products/9999")
+        .send(fields)
+        .expect("Content-Type", /json/)
+        .expect(404, { error: { message: "Not Found" } }, done);
+    });
 
-    // it("should 400 if `name` not provided", done => {
-    //   app.post(`/products/${product.id}`)
-    //     .send({ name: "" })
-    //     .expect("Content-Type", /json/)
-    //     .expect(400, { error: { message: "Product requires `name`" } }, done);
-    // });
+    it("should 400 if `name` not provided", done => {
+      app.patch(`/v1/products/${product.id}`)
+        .send({ name: '' })
+        .expect("Content-Type", /json/)
+        .expect(400, { error: { message: "Product requires `name`" } }, done);
+    });
 
     it("should update product with `id`", done => {
       app.patch(`/v1/products/${product.id}`)
         .send(fields)
         .expect(200)
         .expect("Content-Type", /json/)
-        .expect(res => {
+        .expect((res: any) => {
           if (!res.body) throw new Error("API: Expected data in response");
           if (!res.body.id) throw new Error("API: Expected Product to have id");
           if (!res.body.name) throw new Error("API: Expected Product to have name");
           if (res.body.name !== fields.name) throw new Error(`API: Expected Product name to be '${fields.name}'`);
         })
-        .then(async res => {
+        .then(async (res: any) => {
           let product_1 = await Products.getById(res.body.id);
           if (!product_1) throw new Error("DB: Expected record to exist in DB");
           if (product_1.name !== fields.name) throw new Error(`DB: Expected Product name to be '${fields.name}'`);
@@ -183,12 +183,11 @@ describe("Products API", () => {
     it("should delete product with `id`", done => {
       app.delete(`/v1/products/${product.id}`)
         .expect("Content-Type", /json/)
-        .expect(200, { data: product.id })
+        .expect(200, `${product.id}`)
         // .expect(200, product.id)
-        .then(res => {
+        .then(() => {
           return Products.getById(product.id)
             .then(x => {
-              console.info(x);
               throw new Error("DB: Expected record not to exist in DB")
             })
             .catch(e => null);
