@@ -11,6 +11,7 @@ let CONFIG_VARS = {
   PORT: Number(process.env.PORT) || 3000,
   ENV: process.env.NODE_ENV,
   LOGS: process.env.NODE_ENV === 'production' ? 'combined' : 'dev',
+  LOG_LEVEL: 'silly',
   DB: {
     DB_CONN: 'default',
     DB_HOST: process.env.POSTGRES_HOST,
@@ -26,5 +27,5 @@ let CONFIG_VARS = {
 
 export default CONFIG_VARS;
 
-export const { APP_NAME, APP_VERSION, HOST, PORT, ENV, DB, LOGS } = CONFIG_VARS;
+export const { APP_NAME, APP_VERSION, HOST, PORT, ENV, DB, LOGS, LOG_LEVEL } = CONFIG_VARS;
 export const { DB_NAME, DB_USER, DB_CONN, DB_PASS, DB_HOST, DB_PORT } = CONFIG_VARS.DB;

@@ -3,22 +3,24 @@ import { CompanyService as Service } from '@services/company.service';
 
 class ProductController {
 
-  public async list(_: Request, res: Response) {
+  public async list(_: Request, res: Response, next: NextFunction) {
     (
       Service.getAll().then(response => {
         res.jsonp(response);
+        next();
       }).catch(err => {
-        res.send(err);
+        next(err);
       })
     )
   };
 
-  public async create(req: Request, res: Response) {
+  public async create(req: Request, res: Response, next: NextFunction) {
     (
       Service.add(req.body).then(response => {
-        res.jsonp(response);
+        res.status(201).jsonp(response);
+        next();
       }).catch(err => {
-        res.send(err);
+        next(err);
       })
     )
   };
@@ -27,8 +29,9 @@ class ProductController {
     (
       Service.getById(req.params.id).then(response => {
         res.jsonp(response);
-      }).catch(err => {
         next();
+      }).catch(err => {
+        next(err);
       })
     )
   };
@@ -37,8 +40,9 @@ class ProductController {
     (
       Service.updateById(req.params.id, req.body).then(response => {
         res.jsonp(response);
-      }).catch(({ message }) => {
-        res.jsonp(message);
+        next();
+      }).catch(err => {
+        next(err);
       })
     )
   };
@@ -47,8 +51,9 @@ class ProductController {
     (
       Service.deleteById(req.params.id).then(response => {
         res.jsonp(response);
-      }).catch(({ message }) => {
-        res.jsonp({ message });
+        next();
+      }).catch(err => {
+        next(err);
       })
     )
   };

@@ -10,7 +10,7 @@ import { Express, Request, Response, NextFunction } from 'express';
 import * as API from '@api/index';
 
 import { connectionOptions } from '../db';
-import { APP_NAME, APP_VERSION, DB_HOST, DB_PORT } from '@vars';
+import { ENV, APP_NAME, APP_VERSION, DB_HOST, DB_PORT } from '@vars';
 
 const { combine, timestamp, label, printf } = format;
 
@@ -29,12 +29,17 @@ export class Application {
    * Returns an Express Application with an active database connection
    * @param options
    */
-  public static getApp(options: ApplicationOptions): Promise<any> {
+  public static bootApp(options: ApplicationOptions): Promise<any> {
 
     if (this._app) return Promise.resolve(this._app);
 
     const myFormat = printf(({ level, message, label, timestamp }) => {
-      return `${timestamp} [${label}]: ${message}`;
+      // if (level === 'silly') {
+      //   return `[${label}]: ${message}`;
+      // } else {
+      //   return `${timestamp} [${label}]: ${message}`;
+      // }
+      return `[${label}]: ${message}`;
     });
 
     this.logger = createLogger({
@@ -49,11 +54,28 @@ export class Application {
       ]
     });
 
+    // this.logger = createLogger({
+    //   transports: [new transports.Console()],
+    //   format: format.combine(
+    //     // format.colorize({ all: true }),
+    //     label({ label: APP_NAME }),
+    //     format.simple()
+    //   )
+    // });
+
     if (!connectionOptions) throw new Error(`No ORM configuration found for connection named '${options.connectionName}'`);
 
     return createConnection(connectionOptions).then(_ => {
 
-      this.logger.info(`Connected to ${DB_HOST}:${DB_PORT}`);
+      this.logger.info(``);
+      this.logger.info(`App is now running`);
+      this.logger.info(`press <CTRL> + C at any time to stop running`);
+      this.logger.info(``);
+      this.logger.info('----------------------------------------------------------------------------');
+      this.logger.info('');
+      this.logger.info(`Environment  : ${ENV}`);
+      this.logger.info(`Version      : ${APP_VERSION}`);
+      this.logger.info(`DB           : ${DB_HOST}:${DB_PORT}`);
 
       // Express Application
       this._app = express();

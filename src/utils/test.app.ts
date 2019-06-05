@@ -8,7 +8,7 @@ const options: ApplicationOptions = {
 };
 
 export function getTestApp(): Promise<any> {
-  return Application.getApp(options)
+  return Application.bootApp(options)
     .then(app => supertest(app))
     .catch(e => Application.logger.error(e));
 }
