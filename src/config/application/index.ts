@@ -33,7 +33,7 @@ export class Application {
 
     if (this._app) return Promise.resolve(this._app);
 
-    const myFormat = printf(({ level, message, label, timestamp }) => {
+    const logFormat = printf(({ level, message, label, timestamp }) => {
       // if (level === 'silly') {
       //   return `[${label}]: ${message}`;
       // } else {
@@ -47,21 +47,12 @@ export class Application {
       format: combine(
         label({ label: APP_NAME }),
         timestamp(),
-        myFormat
+        logFormat
       ),
       transports: [
         new transports.Console()
       ]
     });
-
-    // this.logger = createLogger({
-    //   transports: [new transports.Console()],
-    //   format: format.combine(
-    //     // format.colorize({ all: true }),
-    //     label({ label: APP_NAME }),
-    //     format.simple()
-    //   )
-    // });
 
     if (!connectionOptions) throw new Error(`No ORM configuration found for connection named '${options.connectionName}'`);
 

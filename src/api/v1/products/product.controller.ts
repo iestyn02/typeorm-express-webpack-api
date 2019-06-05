@@ -7,19 +7,15 @@ class ProductController {
     (
       Service.getAll().then(response => {
         res.jsonp(response);
-      }).catch(err => {
-        res.jsonp(err);
-      })
+      }).catch(err => next(err))
     )
   };
 
-  public async create(req: Request, res: Response) {
+  public async create(req: Request, res: Response, next: NextFunction) {
     (
       Service.add(req.body).then(response => {
-        res.jsonp(response);
-      }).catch(err => {
-        res.jsonp(err);
-      })
+        res.status(201).jsonp(response);
+      }).catch(err => next(err))
     )
   };
 
@@ -27,9 +23,7 @@ class ProductController {
     (
       Service.getById(req.params.id).then(response => {
         res.jsonp(response);
-      }).catch(err => {
-        res.status(err.status).jsonp(err);
-      })
+      }).catch(err => next(err))
     )
   };
 
@@ -37,9 +31,7 @@ class ProductController {
     (
       Service.updateById(req.params.id, req.body).then(response => {
         res.jsonp(response);
-      }).catch(err => {
-        res.jsonp(err);
-      })
+      }).catch(err => next(err))
     )
   };
 
@@ -47,9 +39,7 @@ class ProductController {
     (
       Service.deleteById(req.params.id).then(response => {
         res.jsonp({ data: Number(response) });
-      }).catch(err => {
-        res.status(err.status).jsonp({ error: err });
-      })
+      }).catch(err => next(err))
     )
   };
 
