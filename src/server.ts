@@ -1,7 +1,8 @@
 import "reflect-metadata";
-// import { argv } from "yargs";
 import { Application, ApplicationOptions } from "./config/application";
-import { HOST, PORT, LOG_LEVEL } from '@vars';
+import { ENV, APP_NAME, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT, LOG_LEVEL } from '@vars';
+
+import { displayBanner } from './utils/banner'
 
 // Application options
 const options: ApplicationOptions = {
@@ -13,8 +14,6 @@ const options: ApplicationOptions = {
 // Boot Application
 Application.bootApp(options).then(app => {
   app.listen(PORT, HOST, () => {
-    Application.logger.info(`API          : http://${HOST}:${PORT}`);
-    Application.logger.info('');
-    Application.logger.info('----------------------------------------------------------------------------');
+    displayBanner(APP_NAME, ENV, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT);
   });
 }).catch(e => Application.logger.error(e));

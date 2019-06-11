@@ -1,6 +1,7 @@
 import * as helmet from 'helmet';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import { createConnection } from 'typeorm';
 import * as bunyan from 'bunyan';
 import * as morgan from 'morgan';
@@ -13,6 +14,7 @@ import { connectionOptions } from '../db';
 import { ENV, APP_NAME, APP_VERSION, DB_HOST, DB_PORT } from '@vars';
 
 const { combine, timestamp, label, printf } = format;
+const log = console.info;
 
 export interface ApplicationOptions {
   connectionName: string;
@@ -58,16 +60,6 @@ export class Application {
 
     return createConnection(connectionOptions).then(_ => {
 
-      this.logger.info(``);
-      this.logger.info(`App is now running`);
-      this.logger.info(`press <CTRL> + C at any time to stop running`);
-      this.logger.info(``);
-      this.logger.info('----------------------------------------------------------------------------');
-      this.logger.info('');
-      this.logger.info(`Environment  : ${ENV}`);
-      this.logger.info(`Version      : ${APP_VERSION}`);
-      this.logger.info(`DB           : ${DB_HOST}:${DB_PORT}`);
-
       // Express Application
       this._app = express();
       this._app.use(bodyParser.urlencoded({
@@ -93,14 +85,31 @@ export class Application {
         next()
       });
 
-      // Apply routes from modules
-      this._app.use('/v1', API);
+      this._app.use(cors());
 
       this._app.get('/', (_: Request, res: Response, next: NextFunction) => {
         res.jsonp({
           status: res.statusCode,
           data: `API v${APP_VERSION} Running! 🎉`
         });
+        next();
+      });
+
+      // Apply routes from modules
+      this._app.use('/v1', API, (data: any, _: Request, res: Response, next: NextFunction) => {
+        if (!(data instanceof HttpError)) {
+          res.jsonp({
+            status: res.statusCode,
+            data
+          });
+          next();
+        } else {
+          next(data);
+        }
+      });
+
+      this._app.use((_: Request, res: Response, next: NextFunction) => {
+        if (!res.headersSent) throw new NotFound();
         next();
       });
 
@@ -125,10 +134,13 @@ export class Application {
 
       // Logger Middleware
       this._app.use((req: Request, res: Response) => {
-        this.logger.info(`${res.statusCode} ${req.method} ${req.url}`);
+        // TODO: log level
+        // TODO: check env, ignore logs if test environment
+        this.logger.info(`${res.statusCode} ${req.method}     ${req.url}`);
       });
 
       return this._app;
+
     }).catch(err => {
       this.logger.error(err);
     });
