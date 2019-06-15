@@ -23,12 +23,10 @@ Application Goals
 
 Create DB Schema
 
--- Schema: demo
-
--- DROP SCHEMA demo;
-
+```sql
 CREATE SCHEMA demo
-  AUTHORIZATION YOUR_DB_USER;
+AUTHORIZATION YOUR_DB_USER;
+```
 
 ## 🛠 Develop
 <p align="center"><img src="https://i.imgur.com/tgWQwSp.jpg"></p>
