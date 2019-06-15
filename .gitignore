@@ -1,5 +1,5 @@
+logs
 *.log
-*.sqlite
 config/*.json
 dist
 node_modules

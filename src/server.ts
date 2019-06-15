@@ -1,19 +1,20 @@
 import "reflect-metadata";
 import { Application, ApplicationOptions } from "./config/application";
-import { ENV, APP_NAME, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT, LOG_LEVEL } from '@vars';
+import { ENV, APP_NAME, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT } from '@vars';
 
 import { displayBanner } from './utils/banner'
+import { logger } from './config/winston'
 
 // Application options
 const options: ApplicationOptions = {
-  connectionName: "default",
-  // logLevel: argv["leg-level"] || "debug",
-  logLevel: LOG_LEVEL,
+  connectionName: 'default'
 };
 
 // Boot Application
 Application.bootApp(options).then(app => {
   app.listen(PORT, HOST, () => {
-    displayBanner(APP_NAME, ENV, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT);
+    if (ENV === 'production' || ENV === 'development') {
+      displayBanner(APP_NAME, ENV, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT);
+    }
   });
-}).catch(e => Application.logger.error(e));
+}).catch(e => logger.error(e));

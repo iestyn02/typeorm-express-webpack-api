@@ -1,14 +1,14 @@
 import "reflect-metadata";
 import * as supertest from "supertest";
 import { Application, ApplicationOptions } from "../config/application";
+import { logger } from '../config/winston';
 
 const options: ApplicationOptions = {
-  connectionName: "default",
-  logLevel: 99,
+  connectionName: "default"
 };
 
 export function getTestApp(): Promise<any> {
   return Application.bootApp(options)
     .then(app => supertest(app))
-    .catch(e => Application.logger.error(e));
+    .catch(e => logger.error(e));
 }

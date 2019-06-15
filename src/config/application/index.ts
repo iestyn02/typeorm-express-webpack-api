@@ -3,29 +3,22 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import { createConnection } from 'typeorm';
-import * as bunyan from 'bunyan';
 import * as morgan from 'morgan';
-import { createLogger, format, transports } from 'winston';
 import { HttpError, NotFound, InternalServerError } from 'http-errors';
 import { Express, Request, Response, NextFunction } from 'express';
 import * as API from '@api/index';
 
 import { connectionOptions } from '../db';
-import { ENV, APP_NAME, APP_VERSION, DB_HOST, DB_PORT } from '@vars';
-
-const { combine, timestamp, label, printf } = format;
-const log = console.info;
+import { ENV, APP_VERSION } from '@vars';
+import { logger } from '../winston'
 
 export interface ApplicationOptions {
   connectionName: string;
-  logLevel: string | number;
 }
 
 export class Application {
 
   private static _app: Express;
-
-  public static logger: any;
 
   /**
    * Returns an Express Application with an active database connection
@@ -34,27 +27,6 @@ export class Application {
   public static bootApp(options: ApplicationOptions): Promise<any> {
 
     if (this._app) return Promise.resolve(this._app);
-
-    const logFormat = printf(({ level, message, label, timestamp }) => {
-      // if (level === 'silly') {
-      //   return `[${label}]: ${message}`;
-      // } else {
-      //   return `${timestamp} [${label}]: ${message}`;
-      // }
-      return `[${label}]: ${message}`;
-    });
-
-    this.logger = createLogger({
-      level: 'info',
-      format: combine(
-        label({ label: APP_NAME }),
-        timestamp(),
-        logFormat
-      ),
-      transports: [
-        new transports.Console()
-      ]
-    });
 
     if (!connectionOptions) throw new Error(`No ORM configuration found for connection named '${options.connectionName}'`);
 
@@ -108,11 +80,6 @@ export class Application {
         }
       });
 
-      this._app.use((_: Request, res: Response, next: NextFunction) => {
-        if (!res.headersSent) throw new NotFound();
-        next();
-      });
-
       // 404 Not Found
       this._app.use((_: Request, res: Response, next: NextFunction) => {
         if (!res.headersSent) throw new NotFound();
@@ -123,7 +90,7 @@ export class Application {
       this._app.use((err: any, req: Request, res: Response, next: NextFunction) => {
         if (!res.headersSent) {
           if (!(err instanceof HttpError)) {
-            this.logger.error(err);
+            logger.error(err);
             err = new InternalServerError();
           }
           res.status(err.statusCode);
@@ -133,16 +100,19 @@ export class Application {
       });
 
       // Logger Middleware
-      this._app.use((req: Request, res: Response) => {
-        // TODO: log level
-        // TODO: check env, ignore logs if test environment
-        this.logger.info(`${res.statusCode} ${req.method}     ${req.url}`);
-      });
+      if (ENV === 'production') {
+        this._app.use(morgan('dev'))
+      } else if (ENV === 'development') {
+        this._app.use((req: Request, res: Response) => {
+          // :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
+          logger.info(`${req.headers['x-forwarded-for'] || req.connection.remoteAddress} "${req.method} ${req.url} HTTP/${req.httpVersion}" ${res.statusCode} ${req.method} ${res.getHeader('content-length')} "${req.headers.referrer || req.headers.referer || ''}" "${req.headers['user-agent']}"`);
+        });
+      }
 
       return this._app;
 
     }).catch(err => {
-      this.logger.error(err);
+      logger.error(err);
     });
   }
 }
