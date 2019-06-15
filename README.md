@@ -31,7 +31,7 @@ CREATE SCHEMA demo
   AUTHORIZATION YOUR_DB_USER;
 
 ## 🛠 Develop
-<p align="center"><img src="https://i.imgur.com/pvI7CQx.jpg"></p>
+<p align="center"><img src="https://i.imgur.com/pvIcz7CQx.jpg"></p>
 
 ## 🔬 Test
 
