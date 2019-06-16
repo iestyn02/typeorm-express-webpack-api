@@ -1,6 +1,6 @@
 {
   "name": "api.typeorm",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "TypeORM API boilerplate with Express & Webpack",
   "main": "./dist/server.bundle.js",
   "scripts": {
