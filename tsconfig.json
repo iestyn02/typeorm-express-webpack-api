@@ -36,11 +36,11 @@
       "@api/*": [
         "./src/api/v1/*"
       ],
-      "@models/*": [
-        "./src/api/@models/*"
+      "@models": [
+        "./src/api/@models/index"
       ],
-      "@services/*": [
-        "./src/api/@services/*"
+      "@services": [
+        "./src/api/@services/index"
       ]
     }
   }

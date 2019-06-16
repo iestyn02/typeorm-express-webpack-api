@@ -1,15 +1,15 @@
-import { getManager, Repository } from "typeorm";
-import { NotFound, BadRequest } from "http-errors";
+import { getManager, Repository } from 'typeorm';
+import { NotFound, BadRequest } from 'http-errors';
 
 import { DB_CONN } from '@vars';
-import { Company } from "@models/company";
+import { Company } from '@models';
 
 export class CompanyService {
 
   private static _entityManager: Repository<Company>;
 
   constructor() {
-    throw Error("Cannot be intantiated");
+    throw Error('Cannot be intantiated');
   }
 
   /**
@@ -24,7 +24,7 @@ export class CompanyService {
    * @param fields
    */
   private static validate(fields: Partial<Company>): boolean {
-    if (!fields.name) throw new BadRequest("Company requires `name`");
+    if (!fields.name) throw new BadRequest('`name` is required');
     return true;
   }
 
@@ -52,7 +52,7 @@ export class CompanyService {
     item.registered = fields.registered;
     item.latitude = fields.latitude;
     item.longitude = fields.longitude;
-    return await this.db().save(item);
+    return this.db().save(item);
   }
 
   /**
@@ -66,7 +66,7 @@ export class CompanyService {
   }
 
   /**
-   * Update a Companys by id
+   * Update a Company by id
    * @param id
    * @param fields
    */

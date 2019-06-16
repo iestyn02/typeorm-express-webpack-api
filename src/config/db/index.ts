@@ -1,7 +1,6 @@
 import { ConnectionOptions } from 'typeorm';
 
-import { Company } from "@models/company";
-import { Product } from "@models/product";
+import { Company, Product } from '@models';
 
 export const connectionOptions: ConnectionOptions = {
   name: 'default',

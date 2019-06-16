@@ -101,12 +101,11 @@ export class Application {
 
       // Logger Middleware
       if (ENV === 'production') {
-        this._app.use(morgan('dev'))
-      } else if (ENV === 'development') {
         this._app.use((req: Request, res: Response) => {
-          // :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
           logger.info(`${req.headers['x-forwarded-for'] || req.connection.remoteAddress} "${req.method} ${req.url} HTTP/${req.httpVersion}" ${res.statusCode} ${req.method} ${res.getHeader('content-length')} "${req.headers.referrer || req.headers.referer || ''}" "${req.headers['user-agent']}"`);
         });
+      } else if (ENV === 'development') {
+        this._app.use(morgan('dev'))
       }
 
       return this._app;

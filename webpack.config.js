@@ -35,8 +35,8 @@ module.exports = env => {
       alias: {
         '@vars': path.resolve(__dirname, './src/config/vars'),
         '@api': path.resolve(__dirname, './src/api/v1/'),
-        '@models': path.resolve(__dirname, './src/api/@models/'),
-        '@services': path.resolve(__dirname, './src/api/@services/'),
+        '@models': path.resolve(__dirname, './src/api/@models/index.ts'),
+        '@services': path.resolve(__dirname, './src/api/@services'),
       }
     },
     module: {

@@ -5,7 +5,7 @@ import {
   OneToMany
 } from "typeorm";
 
-import { Product } from './product';
+import { Product } from '@models';
 
 @Entity({ name: 'companies', schema: 'demo' })
 

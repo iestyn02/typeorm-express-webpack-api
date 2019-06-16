@@ -1,15 +1,15 @@
-import { getManager, Repository } from "typeorm";
-import { NotFound, BadRequest } from "http-errors";
+import { getManager, Repository } from 'typeorm';
+import { NotFound, BadRequest } from 'http-errors';
 
 import { DB_CONN } from '@vars';
-import { Product } from "@models/product";
+import { Product } from '@models';
 
 export class ProductService {
 
   private static _entityManager: Repository<Product>;
 
   constructor() {
-    throw Error("Cannot be intantiated");
+    throw Error('Cannot be intantiated');
   }
 
   /**
@@ -24,7 +24,8 @@ export class ProductService {
    * @param fields
    */
   private static validate(fields: Partial<Product>): boolean {
-    if (!fields.name) throw new BadRequest("Product requires `name`");
+    if (!fields.name) throw new BadRequest('Product requires `name`');
+    // if (!fields.company_id) throw new BadRequest('Product requires an associated `company id`');
     return true;
   }
 

@@ -1,7 +1,7 @@
 import "mocha";
 import { SuperTest, Test } from "supertest";
 import { expect } from 'chai';
-import { getTestApp } from "./utils/test.app";
+import { getTestApp } from "./utils/testing/app";
 
 describe("TypeORM API", () => {
 
