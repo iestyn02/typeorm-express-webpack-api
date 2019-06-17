@@ -8,7 +8,7 @@
     "test": "jest --verbose --setupFiles dotenv/config",
     "build": "webpack --colors --env production",
     "postinstall": "npm run migrations:generate && npm run migrations:run",
-    "pm2": "NODE_ENV=production pm2 ./dist/server.bundle.js",
+    "pm2": "pm2 ./dist/server.bundle.js",
     "typeorm:cli": "ts-node ./node_modules/typeorm/cli",
     "migrations:create": "npm run typeorm:cli -- migration:create -d ./src/db/migrations -n TypeORMAPI",
     "migrations:generate": "npm run typeorm:cli -- migration:generate -d ./src/db/migrations -n TypeORMAPI",
