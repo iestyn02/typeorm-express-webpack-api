@@ -3,7 +3,9 @@
 <h1 align="center">TypeORM Express API</h1>
 
 <p align="center">
-  ![version](https://img.shields.io/badge/version-1.0.6-green.svg)
+  <a href="https://github.com/iestyn02/typeorm-express-webpack-api">
+    <img src="https://img.shields.io/badge/version-1.0.6-green.svg" alt="version" />
+  </a>
 </p>
 
 <p align="center">
