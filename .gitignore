@@ -5,5 +5,6 @@ dist
 node_modules
 .vscode
 .env
+.env.development
 .editorconfig
 src/db/migrations

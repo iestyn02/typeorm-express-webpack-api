@@ -10,7 +10,7 @@ import * as API from '@api/index';
 
 import { connectionOptions } from '../db';
 import { ENV, APP_VERSION } from '@vars';
-import { logger } from '../winston'
+import { logger } from '../winston';
 
 export interface ApplicationOptions {
   connectionName: string;
@@ -110,8 +110,8 @@ export class Application {
 
       return this._app;
 
-    }).catch(err => {
-      logger.error(err);
+    }).catch(({ message }) => {
+      logger.error(message);
     });
   }
 }

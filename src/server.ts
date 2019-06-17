@@ -17,4 +17,4 @@ Application.bootApp(options).then(app => {
       displayBanner(APP_NAME, ENV, APP_VERSION, HOST, PORT, DB_HOST, DB_PORT);
     }
   });
-}).catch(e => logger.error(e));
+}).catch(({ message }) => logger.error(message));

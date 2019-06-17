@@ -31,7 +31,8 @@ describe('Companies API', () => {
       app.get('/v1/companies')
         .expect((res: any) => {
           if (!res.body.data) throw new Error('API: Expected data in response');
-          if (res.body.data.length != 3) throw new Error('API: Expected 3 companies in response');
+          console.warn(res.body.data.length);
+          if (res.body.data.length >= 3) throw new Error('API: Expected 3 companies in response');
         })
         .expect('Content-Type', /json/)
         .expect(200, done);

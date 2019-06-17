@@ -24,7 +24,7 @@ module.exports = env => {
     output: {
       path: __dirname + '/dist',
       pathinfo: true,
-      filename: env === 'production' ? `${version}.bundle.js` : '[name].bundle.js'
+      filename: env === 'production' ? `[hash].bundle.js` : '[name].bundle.js'
     },
     node: {
       __dirname: false,
@@ -55,7 +55,7 @@ module.exports = env => {
         '@services': '@services',
       }),
       new DotEnv({
-        path: path.resolve(__dirname, './.env'),
+        path: path.resolve(__dirname, `${env === 'production' ? './.env' : `./.env.${env}`}`),
         safe: path.resolve(__dirname, './.env.example'),
         systemvars: false,
         silent: false
