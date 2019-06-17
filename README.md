@@ -37,7 +37,7 @@ Try it! I am happy to hear your feedback.
 
 ### ❯ Table of Contents
 
--   [📙 Database & Environment](https://github.com/iestyn02/typeorm-express-webpack-api#-database) - _Setup DB_
+-   [📙 Database & Environment](https://github.com/iestyn02/typeorm-express-webpack-api#-database--environment) - _Setup DB_
 -   [🛠 Develop](https://github.com/iestyn02/typeorm-express-webpack-api#-develop) - _Run app locally_
 -   [🔬 Test](https://github.com/iestyn02/typeorm-express-webpack-api#-test) - _Run tests_
 -   ️️[✅ To Do](https://github.com/iestyn02/typeorm-express-webpack-api#-to-do) - _Roadmap and improvements for this repository_
